@@ -118,7 +118,7 @@ class InstallHelperPlugin implements PluginInterface, EventSubscriberInterface {
       return NULL;
     }
 
-    self::deployDdevFiles();
+    self::deployDistFiles();
   }
 
   /**
@@ -128,24 +128,20 @@ class InstallHelperPlugin implements PluginInterface, EventSubscriberInterface {
    *   Composer package event sent on install/update/remove.
    */
   public function onWunderIoDrupalGitlabLocalPipelinesPackageUpdate(PackageEvent $event) {
-    self::deployDdevFiles();
+    self::deployDistFiles();
   }
 
   /**
    * Copy the config.wunderio.yaml file and the dist/ directory contents to the project.
    */
-  private function deployDdevFiles(): void {
+  private function deployDistFiles(): void {
     $dest_dir = "{$this->projectDir}";
 
     // Clean up old files from project root so we can deploy file removal.
     // This is not ideal solution as we need to keep track of files to delete -
     // basically this should cover everything that is in the dist/ directory.
     $paths_to_delete = [
-      '.ddev/config.wunderio.yaml',
-      '.ddev/commands/web/wunderio-core-*',
-      '.ddev/wunderio/core/',
-      '.ddev/wunderio/custom/.gitignore',
-      'drush/sites/local.site.yml',
+      '.grumphp.yml',
     ];
     foreach($paths_to_delete as $path) {
       $full_delete_path = "{$dest_dir}/$path";
@@ -170,7 +166,7 @@ class InstallHelperPlugin implements PluginInterface, EventSubscriberInterface {
     }
 
     // Copy contents of dist folder to project.
-    $dist_dir = "{$this->vendorDir}/" . self::PACKAGE_NAME . '/dist';
+    $dist_dir = "{$this->vendorDir}/" . self::PACKAGE_NAME;
     self::rcopy($dist_dir, $dest_dir);
   }
 
