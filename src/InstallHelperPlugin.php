@@ -166,7 +166,7 @@ class InstallHelperPlugin implements PluginInterface, EventSubscriberInterface {
     }
 
     // Copy contents of dist folder to project.
-    $dist_dir = "{$this->vendorDir}/" . self::PACKAGE_NAME;
+    $dist_dir = "{$this->vendorDir}/" . self::PACKAGE_NAME . '/dist';
     self::rcopy($dist_dir, $dest_dir);
   }
 

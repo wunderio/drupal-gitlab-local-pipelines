@@ -19,6 +19,14 @@ GrumpPHP via Docker.
    composer require wunderio/drupal-gitlab-local-pipelines --dev
    ```
 
+2. Add vendor and grumphp.yml to .gitignore file:
+
+    ```bash
+    # Composer
+    vendor
+    composer.lock
+    ```
+
 ## Pushing Docker changes Docker Hub
 
 1. Create image
