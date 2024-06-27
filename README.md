@@ -9,7 +9,7 @@ GrumpPHP via Docker.
 
    ```bash
    docker run -v "$(pwd)":/app hkirsman/drupal-gitlab-local-pipelines:latest composer config --no-plugins allow-plugins.wunderio/drupal-gitlab-local-pipelines true
-   docker run -v "$(pwd)":/app wunderio/drupal-gitlab-local-pipelines composer require wunderio/drupal-gitlab-local-pipelines --dev
+   docker run -v "$(pwd)":/app hkirsman/drupal-gitlab-local-pipelines composer require wunderio/drupal-gitlab-local-pipelines --dev
    ```
 
    or use your local Composer:
