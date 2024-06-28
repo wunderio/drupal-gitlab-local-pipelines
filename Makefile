@@ -1,2 +1,2 @@
 build:
-	docker build -t hkirsman/drupal-gitlab-local-pipelines .
+	docker build -t hkirsman/dglp .

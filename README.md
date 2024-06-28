@@ -8,7 +8,7 @@ GrumpPHP via Docker.
 1. Install wunderio/drupal-gitlab-local-pipelines Composer package using our Docker image:
 
    ```bash
-   docker run -it -v "$(pwd)":/app hkirsman/drupal-gitlab-local-pipelines composer require wunderio/drupal-gitlab-local-pipelines --dev
+   docker run -it -v "$(pwd)":/app hkirsman/dglp composer require wunderio/drupal-gitlab-local-pipelines --dev
    ```
 
    or use your local Composer:
@@ -43,11 +43,11 @@ GrumpPHP via Docker.
 3. Tag Docker Image
 
     ```bash
-    docker tag hkirsman/drupal-gitlab-local-pipelines hkirsman/drupal-gitlab-local-pipelines:latest
+    docker tag hkirsman/dglp hkirsman/dglp:latest
     ```
 
 4. Push Docker Image
 
     ```bash
-    docker push hkirsman/drupal-gitlab-local-pipelines:latest
+    docker push hkirsman/dglp:latest
     ```
