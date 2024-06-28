@@ -137,37 +137,29 @@ class InstallHelperPlugin implements PluginInterface, EventSubscriberInterface {
   private function deployDistFiles(): void {
     $dest_dir = "{$this->projectDir}";
 
-    // Clean up old files from project root so we can deploy file removal.
-    // This is not ideal solution as we need to keep track of files to delete -
-    // basically this should cover everything that is in the dist/ directory.
-    $paths_to_delete = [
+    $paths_to_force_copy = [
       '.grumphp.yml',
     ];
-    foreach($paths_to_delete as $path) {
-      $full_delete_path = "{$dest_dir}/$path";
 
-      if (is_file($full_delete_path)) {
-        unlink($full_delete_path);
-      }
-      elseif (is_dir($full_delete_path)) {
-        self::rDelete($full_delete_path);
-      }
-      elseif (strpos($full_delete_path, '*') !== FALSE) {
-        $files = glob($full_delete_path);
-        foreach($files as $file){
-          if(is_file($file)){
-            unlink($file);
-          }
-        }
-      }
-      else{
-        $this->io->write("The path is neither a file nor a directory. Can't delete: {$full_delete_path}");
-      }
+    $path_to_copy_if_not_exists = [
+      // According to https://project.pages.drupalcode.org/gitlab_templates/jobs/phpcs/
+      // module can have it's own phpcs.xml file. So let's not overwrite it.
+      '.phpcs.xml',
+    ];
+
+    // Copy files to project root.
+    foreach ($paths_to_force_copy as $path) {
+      $src = "{$this->vendorDir}/" . self::PACKAGE_NAME . "/$path";
+      self::copy($src, $dest_dir);
     }
 
-    // Copy contents of dist folder to project.
-    $dist_dir = "{$this->vendorDir}/" . self::PACKAGE_NAME . '/dist';
-    self::rcopy($dist_dir, $dest_dir);
+    // Copy files to project root if they don't exist.
+    foreach ($path_to_copy_if_not_exists as $path) {
+      $src = "{$this->vendorDir}/" . self::PACKAGE_NAME . "/$path";
+      if (!file_exists("$dest_dir/$path")) {
+        self::copy($src, $dest_dir);
+      }
+    }
   }
 
   /**
