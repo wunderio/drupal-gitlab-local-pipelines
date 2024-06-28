@@ -138,13 +138,13 @@ class InstallHelperPlugin implements PluginInterface, EventSubscriberInterface {
     $dest_dir = "{$this->projectDir}";
 
     $dist_paths_to_force_copy = [
-      '.grumphp.yml',
+      'grumphp.yml',
     ];
 
     $dist_path_to_copy_if_not_exists = [
       // According to https://project.pages.drupalcode.org/gitlab_templates/jobs/phpcs/
       // module can have it's own phpcs.xml file. So let's not overwrite it.
-      '.phpcs.xml',
+      'phpcs.xml',
     ];
 
     // Copy files to project root.
