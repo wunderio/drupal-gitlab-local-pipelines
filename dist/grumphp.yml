@@ -1,6 +1,9 @@
 grumphp:
+  fixer:
+    enabled: true
+    fix_by_default: true
   git_hook_variables:
-    EXEC_GRUMPHP_COMMAND: "docker run -it -v \"$(pwd)\":/app hkirsman/drupal-gitlab-local-pipelines:latest php"
+    EXEC_GRUMPHP_COMMAND: "docker run -v \"$(pwd)\":/app hkirsman/drupal-gitlab-local-pipelines:latest php"
   ascii:
     failed: ~
     succeeded: ~
