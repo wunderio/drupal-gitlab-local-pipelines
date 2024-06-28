@@ -1,10 +1,9 @@
 grumphp:
   git_hook_variables:
-    EXEC_GRUMPHP_COMMAND: "docker run -v \"$(pwd)\":/app hkirsman/drupal-gitlab-local-pipelines:latest php"
+    EXEC_GRUMPHP_COMMAND: "docker run -it -v \"$(pwd)\":/app hkirsman/drupal-gitlab-local-pipelines:latest php"
   ascii:
     failed: ~
     succeeded: ~
   tasks:
     phpcs:
-      standard: "vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml"
-      triggered_by: [php,inc,module,install,info,test,profile,theme]
+      standard: "phpcs.xml"
