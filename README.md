@@ -27,7 +27,7 @@ GrumpPHP via Docker.
     grumphp.yml
     ```
 
-3. Start using, either update your code and try to commit or run the scanner on whole codebase.
+3. Start using, either update your code and try to commit or run the scanner on whole codebase:
 
     ```bash
     docker run -it -v "$(pwd)":/app hkirsman/dglp vendor/bin/grumphp run
