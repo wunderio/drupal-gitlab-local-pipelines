@@ -24,6 +24,7 @@ GrumpPHP via Docker.
     # Composer
     vendor
     composer.lock
+    grumphp.yml
     ```
 
 ## Pushing Docker changes Docker Hub
